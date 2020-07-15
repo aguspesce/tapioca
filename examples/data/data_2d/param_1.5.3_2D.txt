@@ -1,0 +1,65 @@
+401 176
+4000.0E3 700.0E3
+mg 1
+
+stepMAX 7000
+timeMAX 50.0E6
+
+dt_MAX	10.0e6
+
+print_step 500
+
+visc 		1.0E19
+visc_MAX	1.0E24
+visc_MIN	1.0E19
+
+n_interfaces	9
+
+geoq_on		1
+geoq_fac 	100.0
+veloc 		0.0E-2
+
+deltaT 		1500.
+alpha_exp_thermo 3.28E-5
+kappa 		1.0E-6
+gravity		10.0
+rhom		3300.
+
+H_per_mass	0.0E-12
+c_heat_capacity 1250.
+
+non_linear	1
+adiabatic_H	1
+radiogenic_H	1
+
+bcv_top_normal	1
+bcv_top_slip	0
+
+bcv_bot_normal	1
+bcv_bot_slip	1
+
+bcv_left_normal	1
+bcv_left_slip	1
+
+bcv_right_normal	1
+bcv_right_slip		1
+
+
+bcT_top		1
+
+bcT_bot		1
+
+bcT_left	0
+
+bcT_right	0
+
+rheol	6
+T_initial	3
+
+H_lito		180000.0
+
+h_air		40000.0
+
+beta_max	3.0
+ramp_begin	2000.0E3
+ramp_end	2200.0E3

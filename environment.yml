@@ -1,0 +1,14 @@
+name: tapioca
+channels:
+    - conda-forge
+dependencies:
+    - python=3.7
+    - pip
+    - numpy
+    - scipy
+    - xarray
+    - matplotlib
+    # Development requirements
+    - black
+    - pylint
+    - flake8

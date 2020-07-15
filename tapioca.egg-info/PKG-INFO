@@ -1,0 +1,22 @@
+Metadata-Version: 1.2
+Name: tapioca
+Version: 0+unknown
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: Agustina Pesce
+Author-email: pesce.agustina@gmail.com
+Maintainer: Agustina Pesce
+Maintainer-email: pesce.agustina@gmail.com
+License: BSD License
+Description: UNKNOWN
+Platform: Any
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: License :: OSI Approved :: BSD License
+Requires-Python: >=3.6

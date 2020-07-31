@@ -29,7 +29,7 @@ conda env create -f environment.yml
 And then activate the environment:
 
 ```
-conda activate modelling_earth
+conda activate tapioca
 ```
 
 ### Installing

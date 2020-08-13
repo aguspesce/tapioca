@@ -13,3 +13,4 @@ dist/
 MANIFEST
 .coverage.*
 examples/_*
+examples/*.nc

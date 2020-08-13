@@ -14,7 +14,7 @@ dataset = tp.read_mandyoc_data(
     mandyoc_files_path, datasets=["temperature", "viscosity"]
 )
 print(dataset)
-dataset.to_netcdf("data.nc")
+
 # Plot the temperature
 for time in dataset.time:
     fig, ax = plt.subplots()

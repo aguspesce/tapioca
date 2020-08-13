@@ -13,7 +13,7 @@ mandyoc_output_path = os.path.join(script_path, "data", "data_2d")
 ds_particle = tp.read_mandyoc_particles(mandyoc_output_path)
 print(ds_particle)
 
-# Read temperatura data
+# Read temperature data
 ds_data = tp.read_mandyoc_data(mandyoc_output_path)
 
 for time in ds_data.time:

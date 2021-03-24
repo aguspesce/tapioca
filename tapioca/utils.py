@@ -110,7 +110,7 @@ def _read_times(path, print_step, max_steps):
             break
         time = np.loadtxt(filename, unpack=True, delimiter=":", usecols=(1))
         if time.shape == ():
-            time.append(time)
+            times.append(time)
         else:
             time = time[0]
             times.append(time)

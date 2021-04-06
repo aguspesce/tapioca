@@ -81,7 +81,7 @@ def _read_parameters(parameters_file):
     return parameters
 
 
-def _read_times(path, print_step, max_steps):
+def _read_times(path, print_step, max_steps, steps_slice):
     """
     Read the time files from the Mandyoc output
 
@@ -95,6 +95,9 @@ def _read_times(path, print_step, max_steps):
         Maximum number of steps. Mandyoc could break computation before the
         ``max_steps`` are run if the maximum time is reached. This quantity only
         bounds the number of time files.
+    steps_slice : tuple
+        Slice of steps (min_steps_slice, max_steps_slice). If it is None,
+        min_step_slice = 0 and max_steps_slice = max_steps.
 
     Returns
     -------
@@ -104,7 +107,12 @@ def _read_times(path, print_step, max_steps):
         Array containing the time of each step in Ma.
     """
     steps, times = [], []
-    for step in range(0, max_steps + print_step, print_step):
+    # Define the mininun and maximun step
+    if steps_slice is not None:
+        min_steps_slice, max_steps_slice = steps_slice[:]
+    else:
+        min_steps_slice, max_steps_slice = 0, max_steps
+    for step in range(min_steps_slice, max_steps_slice + print_step, print_step):
         filename = os.path.join(path, "{}{}.txt".format(TIMES_BASENAME, step))
         if not os.path.isfile(filename):
             break

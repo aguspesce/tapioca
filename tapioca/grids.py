@@ -33,7 +33,12 @@ DATASETS = (
 SCALARS_ON_NODES = DATASETS[:6]
 
 
-def read_mandyoc_data(path, parameters_file=PARAMETERS_FILE, datasets=DATASETS):
+def read_mandyoc_data(
+    path,
+    parameters_file=PARAMETERS_FILE,
+    datasets=DATASETS,
+    steps_slice=None,
+):
     """
     Read the output files from the Mandyoc code
 
@@ -56,6 +61,9 @@ def read_mandyoc_data(path, parameters_file=PARAMETERS_FILE, datasets=DATASETS):
             - ``viscosity``
             - ``velocity``
         By default, every dataset will be read.
+    steps_slice : tuple
+        Slice of steps to generate the step array. If it is None, it is taken
+        from the folder where the Mandyoc output files are located.
 
     Returns
     -------
@@ -68,7 +76,12 @@ def read_mandyoc_data(path, parameters_file=PARAMETERS_FILE, datasets=DATASETS):
     shape = parameters["shape"]
     coordinates = _build_coordinates(region=parameters["region"], shape=shape)
     # Get array of times and steps
-    steps, times = _read_times(path, parameters["print_step"], parameters["stepMAX"])
+    steps, times = _read_times(
+        path,
+        parameters["print_step"],
+        parameters["stepMAX"],
+        steps_slice,
+    )
     # Create the coordinates dictionary containing the coordinates of the nodes
     # and the time and step arrays. Then create data_vars dictionary containing the
     # desired scalars datasets. The number of coordiantes will depend on the dimension

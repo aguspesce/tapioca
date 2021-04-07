@@ -295,13 +295,12 @@ def _read_viscosity(path, steps, shape):
         ]
         if step_index == 0:
             n_rank = len(step_files)
-        else:
-            if len(step_files) != n_rank:
-                raise ValueError(
-                    "Invalid number of ranks '{}' for step '{}'".format(
-                        len(step_files), step
-                    )
+        if len(step_files) != n_rank:
+            raise ValueError(
+                "Invalid number of ranks '{}' for step '{}'".format(
+                    len(step_files), step
                 )
+            )
         # Read rank file for this step and add the viscosity results to viscosity array
         for rank in range(n_rank):
             filename = "visc_{}_{}.txt".format(step, rank)

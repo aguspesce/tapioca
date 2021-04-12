@@ -10,11 +10,19 @@ script_path = os.path.dirname(os.path.abspath(__file__))
 mandyoc_output_path = os.path.join(script_path, "data", "data_2d")
 
 # Read the particles position
-ds_particle = tp.read_mandyoc_particles(mandyoc_output_path)
+slice = (1500, 4000)
+ds_particle = tp.read_mandyoc_particles(
+    mandyoc_output_path,
+    steps_slice=slice,
+)
 print(ds_particle)
 
 # Read temperature data
-ds_data = tp.read_mandyoc_data(mandyoc_output_path)
+ds_data = tp.read_mandyoc_data(
+    mandyoc_output_path,
+    datasets=["temperature", "viscosity"],
+    steps_slice=slice,
+)
 
 for time in ds_data.time:
     fig, ax = plt.subplots()

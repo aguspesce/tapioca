@@ -1,5 +1,5 @@
 """
-Read the particle positions from 2D data
+Read the particle positions from 2D data for an specified period of time
 """
 import os
 import tapioca as tp

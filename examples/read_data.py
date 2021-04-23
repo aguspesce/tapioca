@@ -1,5 +1,5 @@
 """
-Read Mandyoc output files and seve them as a xarray.dataset
+Read Mandyoc output files and save them as a xarray.dataset
 """
 import os
 import matplotlib.pyplot as plt

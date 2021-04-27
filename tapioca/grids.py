@@ -112,7 +112,7 @@ def read_mandyoc_data(
 
     # Read velocity if needed
     if "velocity" in datasets:
-        velocities = _read_velocity(path, shape, steps)
+        velocities = _read_velocity(path, shape, steps, filetype)
         if dimension == 2:
             data_vars["velocity_x"] = (dims, velocities[0])
             data_vars["velocity_z"] = (dims, velocities[1])
@@ -242,7 +242,7 @@ def _read_scalars(path, shape, steps, quantity, filetype):
     return data
 
 
-def _read_velocity(path, shape, steps):
+def _read_velocity(path, shape, steps, filetype):
     """
     Read Mandyoc output velocity data
 
@@ -266,8 +266,18 @@ def _read_velocity(path, shape, steps):
     if dimension == 3:
         velocity_y = []
     for step in steps:
-        filename = "{}_{}.txt".format(BASENAMES["velocity"], step)
-        velocity = np.loadtxt(os.path.join(path, filename), comments="P", skiprows=2)
+        filename = "{}_{}".format(BASENAMES["velocity"], step)
+        # To open outpus binary files
+        if filetype == "binary":
+            load = PETSc.Viewer().createBinary(
+                os.path.join(path, filename + ".bin"), "r"
+            )
+            velocity = PETSc.Vec().load(load).getArray()
+            del load
+        else:
+            velocity = np.loadtxt(
+                os.path.join(path, filename + ".txt"), comments="P", skiprows=2
+            )
         # Convert very small numbers to zero
         velocity[np.abs(velocity) < 1.0e-200] = 0
         # Separate velocity into their three components

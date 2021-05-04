@@ -14,9 +14,10 @@ files_path = os.path.join(script_path, "data", "vanKeken1997")
 
 # Read the particles position
 # slice = (20, 80)
-ds_particle = tp.read_mandyoc_particles(files_path,
-                                        # steps_slice=slice,
-                                        )
+ds_particle = tp.read_mandyoc_particles(
+    files_path,
+    # steps_slice=slice,
+)
 print(ds_particle)
 
 # Read density and temperature data

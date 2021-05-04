@@ -67,6 +67,8 @@ def read_mandyoc_data(
     steps_slice : tuple
         Slice of steps to generate the step array. If it is None, it is taken
         from the folder where the Mandyoc output files are located.
+    filetype : str
+        Files format to be read. Default to ``"ascii"``.
 
     Returns
     -------

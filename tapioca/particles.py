@@ -148,7 +148,7 @@ def _load_binary_file(
     path,
     file_name,
 ):
-    """"""
+    """ """
     sint = 4
     sfloat = 8
     # Determine the number of lines in the file

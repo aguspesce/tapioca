@@ -103,9 +103,7 @@ def read_mandyoc_data(
     data_vars = {
         scalar: (
             dims,
-            _read_scalars(
-                path, shape, steps, quantity=scalar, filetype=filetype
-            ),
+            _read_scalars(path, shape, steps, quantity=scalar, filetype=filetype),
         )
         for scalar in datasets
         if scalar in SCALARS_ON_NODES

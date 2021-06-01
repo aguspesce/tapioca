@@ -74,7 +74,6 @@ def _read_parameters(parameters_file):
     parameters["temperature_units"] = "C"
     parameters["density_units"] = "kg/m^3"
     parameters["heat_units"] = "W/m^3"
-    parameters["viscosity_factor_units"] = "dimensionless"
     parameters["viscosity_units"] = "Pa s"
     parameters["strain_rate_units"] = "s^(-1)"
     parameters["pressure_units"] = "Pa"

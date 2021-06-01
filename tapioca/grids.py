@@ -16,6 +16,7 @@ BASENAMES = {
     "radiogenic_heat": "H",
     "viscosity": "Geoq",
     "strain": "strain",
+    "strain_rate": "strain_rate",
     "pressure": "Pressure",
     "velocity": "Veloc_fut",
 }
@@ -25,12 +26,13 @@ DATASETS = (
     "radiogenic_heat",
     "viscosity",
     "strain",
+    "strain_rate",
     "pressure",
     "velocity",
 )
 # Define which datasets are scalars measured on the nodes of the grid, e.g. velocity is
 # not a scalar, and viscosity is measured on the center of the finite elements
-SCALARS_ON_NODES = DATASETS[:5]
+SCALARS_ON_NODES = DATASETS[:6]
 
 
 def read_mandyoc_data(
@@ -57,6 +59,7 @@ def read_mandyoc_data(
             - ``density"``
             - ``radiogenic_heat``
             - ``strain``
+            - ``strain_rate``
             - ``pressure``
             - ``viscosity``
             - ``velocity``
@@ -179,7 +182,7 @@ def _read_scalars(path, shape, steps, quantity, filetype):
     Read Mandyoc output scalar data
 
     Read ``temperature``, ``density``, ``radiogenic_heat``, ``viscosity``,
-    ``strain`` and ``pressure``.
+    ``strain``, ``strain_rate`` and ``pressure``.
 
     Parameters
     ----------

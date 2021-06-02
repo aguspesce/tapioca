@@ -5,7 +5,7 @@ import os
 import numpy as np
 
 TIMES_BASENAME = "time_"
-PARAMETERS_FILE = "param.txt"
+PARAMETERS_FILE = "param_1.5.3_2D.txt"
 
 
 def _read_parameters(parameters_file):
@@ -75,7 +75,6 @@ def _read_parameters(parameters_file):
     parameters["density_units"] = "kg/m^3"
     parameters["heat_units"] = "W/m^3"
     parameters["viscosity_units"] = "Pa s"
-    parameters["strain_unis"] = "dimensionless"
     parameters["strain_rate_units"] = "s^(-1)"
     parameters["pressure_units"] = "Pa"
     return parameters

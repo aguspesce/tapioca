@@ -111,9 +111,7 @@ def _read_times(path, print_step, max_steps, steps_slice):
         min_steps_slice, max_steps_slice = steps_slice[:]
     else:
         min_steps_slice, max_steps_slice = 0, max_steps
-    for step in range(
-        min_steps_slice, max_steps_slice + print_step, print_step
-    ):
+    for step in range(min_steps_slice, max_steps_slice + print_step, print_step):
         filename = os.path.join(path, "{}{}.txt".format(TIMES_BASENAME, step))
         if not os.path.isfile(filename):
             break

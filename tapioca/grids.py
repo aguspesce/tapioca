@@ -11,14 +11,14 @@ from petsc4py import PETSc
 from .utils import _read_parameters, _read_times, PARAMETERS_FILE
 
 BASENAMES = {
-    "temperature": "Temper",
-    "density": "Rho",
-    "radiogenic_heat": "H",
-    "viscosity": "Geoq",
+    "temperature": "temperature",
+    "density": "density",
+    "radiogenic_heat": "heat",
+    "viscosity": "viscosity",
     "strain": "strain",
     "strain_rate": "strain_rate",
-    "pressure": "Pressure",
-    "velocity": "Veloc_fut",
+    "pressure": "pressure",
+    "velocity": "velocity",
 }
 DATASETS = (
     "temperature",
@@ -106,7 +106,9 @@ def read_mandyoc_data(
     data_vars = {
         scalar: (
             dims,
-            _read_scalars(path, shape, steps, quantity=scalar, filetype=filetype),
+            _read_scalars(
+                path, shape, steps, quantity=scalar, filetype=filetype
+            ),
         )
         for scalar in datasets
         if scalar in SCALARS_ON_NODES

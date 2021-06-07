@@ -1,34 +1,32 @@
 """
-Read the particle positions and the density data from 2D model.
+Read the model data and plot the particle positions and the density.
 The data format is binary.
 """
 import os
 import tapioca as tp
 import matplotlib.pyplot as plt
 
-# Get path to the MANDYOC output directory
+# Get path to the model data directory
 script_path = os.path.dirname(os.path.abspath(__file__))
-
 # Path to binary data
 files_path = os.path.join(script_path, "data", "vanKeken1997-bin")
 
-# Read the particles position
-# slice = (20, 80)
+# Read particles position
+# slice = (100, 300)
 ds_particle = tp.read_mandyoc_particles(
     files_path,
     filetype="binary",
     # steps_slice=slice,
 )
-print(ds_particle)
+print("DATASET WITH THE PARTICLE DATA:", ds_particle)
 
-# Read density and temperature data
+# Read data
 ds_data = tp.read_mandyoc_data(
     files_path,
-    datasets=["density", "temperature"],
     filetype="binary",
     # steps_slice=slice,
 )
-print(ds_data)
+print("DATASET WITH ALL MODEL DATA: ", ds_data)
 
 # Plot the density and the particle positions
 for time in ds_data.time:

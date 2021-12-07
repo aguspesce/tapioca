@@ -30,47 +30,40 @@ def _read_parameters(parameters_file):
         Dictionary containing the parameters of Mandyoc files.
     """
     parameters = {}
-    read_shape, read_max_coords = False, False
     with open(parameters_file, "r") as params_file:
         for line in params_file:
             # Skip blank lines
             if not line.strip():
                 continue
-            # Read number of coordinates per direction
-            if not read_shape:
-                parameters["shape"] = tuple(int(i) for i in line.split())
-                read_shape = True
-                # Determine the dimension of the data
-                dimension = len(parameters["shape"])
+            if line[0] == "#":
                 continue
-            # Read maximum coordinates per direction
-            if not read_max_coords:
-                max_coords = tuple(float(i) for i in line.split())
-                read_max_coords = True
-                # Assert that the dimension matches the one read in shape
-                assert len(max_coords) == dimension
-                continue
-            # Read more parameters
-            key, value = line.split()
-            if key in "print_step stepMAX".split():
-                parameters[key] = int(value)
-            elif key == "timeMAX":
-                parameters[key] = float(value)
-            else:
-                parameters[key] = value
-    # Add extrime values for the axis according to the dimension
-    parameters["dimension"] = dimension
-    x_max, z_max = max_coords[:]
-    parameters["region"] = (0, x_max, -z_max, 0)
-    # Add units
-    parameters["coords_units"] = "m"
-    parameters["times_units"] = "Ma"
-    parameters["temperature_units"] = "C"
-    parameters["density_units"] = "kg/m^3"
-    parameters["heat_units"] = "W/m^3"
-    parameters["viscosity_units"] = "Pa s"
-    parameters["strain_rate_units"] = "s^(-1)"
-    parameters["pressure_units"] = "Pa"
+            # Remove comments lines
+            line = line.split("#")[0].split()
+            var_name, var_value = line[0], line[2]
+            parameters[var_name.strip()] = var_value.strip()
+        # Add shape
+        parameters["shape"] = (int(parameters["nx"]), int(parameters["nz"]))
+        # Add dimension
+        parameters["dimension"] = len(parameters["shape"])
+        # Add region
+        parameters["region"] = (
+            0,
+            float(parameters["lx"]),
+            -float(parameters["lz"]),
+            0,
+        )
+        parameters["step_max"] = int(parameters["step_max"])
+        parameters["time_max"] = float(parameters["time_max"])
+        parameters["print_step"] = int(parameters["step_print"])
+        # Add units
+        parameters["coords_units"] = "m"
+        parameters["times_units"] = "Ma"
+        parameters["temperature_units"] = "C"
+        parameters["density_units"] = "kg/m^3"
+        parameters["heat_units"] = "W/m^3"
+        parameters["viscosity_units"] = "Pa s"
+        parameters["strain_rate_units"] = "s^(-1)"
+        parameters["pressure_units"] = "Pa"
     return parameters
 
 
@@ -105,7 +98,9 @@ def _read_times(path, print_step, max_steps, steps_slice):
         min_steps_slice, max_steps_slice = steps_slice[:]
     else:
         min_steps_slice, max_steps_slice = 0, max_steps
-    for step in range(min_steps_slice, max_steps_slice + print_step, print_step):
+    for step in range(
+        min_steps_slice, max_steps_slice + print_step, print_step
+    ):
         filename = os.path.join(path, "{}{}.txt".format(TIMES_BASENAME, step))
         if not os.path.isfile(filename):
             break

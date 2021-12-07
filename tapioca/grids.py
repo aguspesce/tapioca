@@ -87,7 +87,7 @@ def read_mandyoc_data(
     steps, times = _read_times(
         path,
         parameters["print_step"],
-        parameters["stepMAX"],
+        parameters["step_max"],
         steps_slice,
     )
     # Create the coordinates dictionary containing the coordinates of the nodes
@@ -101,7 +101,9 @@ def read_mandyoc_data(
     data_vars = {
         scalar: (
             dims,
-            _read_scalars(path, shape, steps, quantity=scalar, filetype=filetype),
+            _read_scalars(
+                path, shape, steps, quantity=scalar, filetype=filetype
+            ),
         )
         for scalar in datasets
         if scalar in SCALARS_ON_NODES

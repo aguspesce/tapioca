@@ -44,9 +44,7 @@ def read_mandyoc_particles(
     steps, times = _read_times(path, print_step, max_steps, steps_slice)
 
     # Get the particle id from the first step file
-    particle_ids = _get_all_particles_ids(
-        path, particle_files, filetype=filetype
-    )
+    particle_ids = _get_all_particles_ids(path, particle_files, filetype=filetype)
     # Initialize the dataset. The data variable have nans values
     dims = ("time", "particle_id")
     coords = {
@@ -114,9 +112,7 @@ def _get_all_particles_ids(
     """
     Function to get the particle id from the first step file
     """
-    first_step_files = [
-        f for f in particle_files if "step_{}".format(first_step) in f
-    ]
+    first_step_files = [f for f in particle_files if "step_{}".format(first_step) in f]
     particle_ids = []
     for i in range(len(first_step_files)):
         if filetype == "binary":

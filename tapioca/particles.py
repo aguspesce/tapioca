@@ -40,7 +40,7 @@ def read_mandyoc_particles(
     particle_files = [f for f in os.listdir(path) if "step_" in f]
     # Determine the number of time steps using the parameter file
     parameters = _read_parameters(os.path.join(path, parameters_file))
-    print_step, max_steps = parameters["print_step"], parameters["stepMAX"]
+    print_step, max_steps = parameters["print_step"], parameters["step_max"]
     steps, times = _read_times(path, print_step, max_steps, steps_slice)
 
     # Get the particle id from the first step file

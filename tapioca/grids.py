@@ -87,7 +87,7 @@ def read_mandyoc_data(
     steps, times = _read_times(
         path,
         parameters["print_step"],
-        parameters["stepMAX"],
+        parameters["step_max"],
         steps_slice,
     )
     # Create the coordinates dictionary containing the coordinates of the nodes

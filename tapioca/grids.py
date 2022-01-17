@@ -52,7 +52,7 @@ def read_mandyoc_data(
     parameters_file : str (optional)
         Name of the parameters file. It must be located inside the ``path``
         directory.
-        Default to ``"param_1.5.3_2D.txt"``.
+        Default to ``"param.txt"``.
     datasets : tuple (optional)
         Tuple containing the datasets that wants to be loaded.
         The available datasets are:

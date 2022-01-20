@@ -24,7 +24,7 @@ def read_mandyoc_particles(
         Path to the folder where the Mandyoc files are located.
     parameters_file : str (optional)
         Name of the parameter file. It is mus be located inside the ``path``
-        directory. Default to ``"param_1.5.3_2D.txt"``.
+        directory. Default to ``"param.txt"``.
     steps_slice : tuple
     filetype : str
         Files format to be read. Default to ``"ascii"``.
@@ -63,7 +63,7 @@ def read_mandyoc_particles(
     # Fill the dataset
     for counter, (step, time) in enumerate(zip(steps, times)):
         # Determine the rank value on the first step and check it for following steps
-        step_files = [f for f in particle_files if "step_{}-".format(step) in f]
+        step_files = [f for f in particle_files if "step_{}_".format(step) in f]
         if counter == 0:
             n_rank = len(step_files)
         if len(step_files) != n_rank:
@@ -74,7 +74,7 @@ def read_mandyoc_particles(
             )
         # Read the files for the step and fill the dataset depending of the dimension
         for i in range(n_rank):
-            basename = "step_{}-rank_new{}".format(step, i)
+            basename = "step_{}_{}".format(step, i)
             # To open binary files
             if filetype == "binary":
                 file_name = basename + ".bin"
